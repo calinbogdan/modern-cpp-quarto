@@ -2,12 +2,14 @@
 
 std::optional<Piece> Board::operator[](const Position& point) const
 {
-	return m_pieces[point.first * kMatrixDimension + point.second];
+	const auto&[line_index, column_index] = point;
+	return m_pieces[line_index * kMatrixDimension + column_index];
 }
 
 std::optional<Piece>& Board::operator[](const Position& point)
 {
-	return m_pieces[point.first * kMatrixDimension + point.second];
+	const auto&[line_index, column_index] = point;
+	return m_pieces[line_index * kMatrixDimension + column_index];
 }
 
 std::ostream& operator<<(std::ostream& os, const Board& board)
