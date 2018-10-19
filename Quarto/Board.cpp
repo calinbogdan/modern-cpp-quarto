@@ -2,22 +2,23 @@
 
 std::optional<Piece> Board::operator[](const Position& point) const
 {
-	const auto&[line_index, column_index] = point;
+	const auto&[line_index, column_index] = point; // structured binding
 	return m_pieces[line_index * kMatrixDimension + column_index];
 }
 
 std::optional<Piece>& Board::operator[](const Position& point)
 {
-	const auto&[line_index, column_index] = point;
+	const auto&[line_index, column_index] = point; // structured binding
 	return m_pieces[line_index * kMatrixDimension + column_index];
 }
 
 std::ostream& operator<<(std::ostream& os, const Board& board)
 {
 	Board::Position position;
-	for (position.first = 0; position.first < Board::kMatrixDimension; position.first++)
+	auto&[line_index, column_index] = position; // structured binding
+	for (line_index = 0; line_index < Board::kMatrixDimension; line_index++)
 	{
-		for (position.second = 0; position.second < Board::kMatrixDimension; position.second++)
+		for (column_index = 0; column_index < Board::kMatrixDimension; column_index++)
 		{
 			if (board[position])
 			{
